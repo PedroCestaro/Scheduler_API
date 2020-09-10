@@ -40,7 +40,9 @@ export default class NewTask{
 
     }
 
-    async index(){
-
+    async index(request : Request, response : Response){
+           const tasks = await database('task').innerJoin('user','task.fk_id_user','=','user.id_user')
+            
+            return response.json(tasks);          
     }
-}
+} 
